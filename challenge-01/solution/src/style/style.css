@@ -32,7 +32,8 @@ body {
 }
 
 .timer-wrapper {
-  background-color:gray;
+  background-color:#000000;
+  box-shadow: -5px 14px 44px #000000, 5px -16px 50px rgba(255, 255, 255, 0.15);
   color: white;
   width: max-content;
   aspect-ratio: 1;
@@ -51,7 +52,8 @@ body {
 }
 
 .inner-wrapper {
-  background-color: darkgray;
+  background: radial-gradient(71.4% 71.4% at 51.7% 28.6%, #3A393F 0%, #17171A 100%);
+  box-shadow: inset 0px 0px 114px rgba(0, 0, 0, 0.45);
   flex-direction: column;
   display: flex;
   align-items: center;
