@@ -10,7 +10,9 @@ app.innerHTML = `
   <div class="timer-wrapper rounded">
     <div class="timer-progress rounded" id="progress-bar">
       <div class="inner-wrapper rounded"> 
-        <div class="time" id="time">15:00</div>
+        <p class="time" id="time">
+          <span class="minutes">15</span>:<span class="seconds">00</span>
+        </p>
         <div class="buttons-wrapper">
           <button class="start-stop-btn" id="start-stop-btn">
             <span>Start</span>
@@ -33,9 +35,10 @@ export class PomodoroTimer {
   settingButton: HTMLElement | null;
   progressBar: HTMLElement | null;
   timer;
+  settingTimerTemplate: string;
 
   constructor(timerDuration: number = 900) {
-    this.timeLeft = 0;
+    this.timeLeft = timerDuration;
     this.timerDuration = timerDuration;
     this.timer = null;
     this.isPlaying = false;
@@ -44,6 +47,12 @@ export class PomodoroTimer {
     this.startStopButton = document.getElementById("start-stop-btn");
     this.settingButton = document.getElementById("setting-btn");
     this.progressBar = document.getElementById("progress-bar")
+
+    this.settingTimerTemplate = `
+      <input type="number" id="minutes" name="minutes" maxlength="2" placeholder="00">
+      <span class="divider">:</span>
+      <input type="number" id="seconds" name="seconds" maxlength="2" placeholder="00">
+    `
 
     if (this.startStopButton) {
       this.startStopButton.addEventListener("click", () => {
@@ -84,20 +93,25 @@ export class PomodoroTimer {
     this.timeLeft = this.timerDuration;
     this.isPlaying = false;
     this.startStopButton.innerHTML = "Start";
-    this.timeDiv.innerHTML = formatTime(this.timeLeft);
+
+    let timeLeftView = formatTime(this.timeLeft);
+    this.timeDiv.innerHTML = `${timeLeftView.minute}:${timeLeftView.second}`
     this.updateProgressBar();
   }
 
   updateTime() {
-    // count direction is up
     this.timeLeft--;
-    if (this.timeDiv) this.timeDiv.innerHTML = formatTime(this.timeLeft);
+    if (this.timeDiv) {
+      let timeLeftView = formatTime(this.timeLeft);
+      this.timeDiv.innerHTML = `${timeLeftView.minute}:${timeLeftView.second}`
+    }
   }
 
   onSettingButtonClicked() {
-    let minutesInput: string = window.prompt("Please input the custom duration (in minutes)", "15");
-    let secondsInput: string = window.prompt("Please input the custom duration (in seconds)", "60");
-    this.setTimerDuration(minutesInput, secondsInput);
+    // let minutesInput: string = window.prompt("Please input the custom duration (in minutes)", "15");
+    // let secondsInput: string = window.prompt("Please input the custom duration (in seconds)", "60");
+    // this.setTimerDuration(minutesInput, secondsInput);
+    this.timeDiv.innerHTML = this.settingTimerTemplate;
   }
 
   setTimerDuration(minutes: string, seconds: string) {

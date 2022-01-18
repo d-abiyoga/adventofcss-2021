@@ -8,5 +8,8 @@ export function formatTime(currentTime: number): string {
   if (seconds.length === 1) seconds = `0${seconds}`
 
   let formattedTime = `${minutes}:${seconds}`;
-  return formattedTime;
+  return {
+    minute: minutes,
+    second: seconds
+  };
 }
