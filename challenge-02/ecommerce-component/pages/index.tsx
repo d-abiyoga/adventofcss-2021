@@ -1,33 +1,18 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import { abort } from 'process'
-import styles from '../styles/Home.module.css'
-import MenuCard from '/components/MenuCard'
+import type { NextPage } from "next";
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import MenuCard from "/components/MenuCard";
+import data from "/utils/data.js";
+import { MobileLayout } from "/components/Layout/MobileLayout";
+
+const bgColors = [
+  "#7AB3F333", 
+  "#E979B233", 
+  "#D7D7F933", 
+  "#78F7BB33"
+];
 
 const Home: NextPage = () => {
-  const menuItems = [
-    {
-      name: "French Fries with Ketchup",
-      price: 4.5,
-      picUrl: ''
-    },
-    {
-      name: "Salmon and Vegetables",
-      price: 4.5,
-      picUrl: ''
-    },
-    {
-      name: "Spaghetti with Meat Sauce",
-      price: 4.5,
-      picUrl: ''
-    },
-    {
-      name: "French Fries with Ketchup",
-      price: 4.5,
-      picUrl: ''
-    },
-  ]
   return (
     <div className={styles.container}>
       <Head>
@@ -36,20 +21,25 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          To Go Menu
-        </h1>
-        <ul className="menu">
-          {menuItems.map((item) => (
-            <li>
-              <MenuCard name={item.name} price={item.price} />
-            </li>
-          ))}
-        </ul>
-      </main>
+      <MobileLayout>
+        <main className={styles.main}>
+          <h1 className={styles.title}>To Go Menu</h1>
+          <ul className={styles.productList}>
+            {data.map((item, index: number) => (
+              <li key={index}>
+                <MenuCard
+                  name={item.name}
+                  price={item.price}
+                  imgUrl={item.imgUrl}
+                  bgColor={bgColors[index%4]}
+                />
+              </li>
+            ))}
+          </ul>
+        </main>
+      </MobileLayout>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

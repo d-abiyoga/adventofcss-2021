@@ -1,0 +1,43 @@
+.container {
+  position: relative;
+  left: -0.9rem;
+  padding-bottom: 0.1rem;
+}
+.cardWrapper {
+  position: relative;
+  display: flex;
+  margin: 1.25rem 0 1rem 0.9rem;
+  /* background-color: rgba(122, 179, 243, 0.2); */
+  border-radius: 20px 0 0 20px;
+  width: 100%;
+}
+
+.productImage {
+  position: relative;
+  top: -1.25rem;
+  left: -0.9rem;
+}
+.productDetail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  padding-top: 1.5rem;
+  width: 50%;
+}
+
+.productName {
+  font-size: 1.125rem;
+  padding-bottom: 1rem;
+}
+
+.productPrice {
+  font-size: 2rem;
+  line-height: 2rem;
+  font-weight: 700;
+}
+
+.productDetail > button {
+  position: relative;
+  top: 1rem;
+}
