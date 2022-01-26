@@ -1,7 +1,21 @@
-.container {
-  padding: 0 2rem;
+.main {
+  background-color: #eff0f6;
+  background-image: url(/images/bg__top-right.svg), url(/images/bg__left.svg),
+    url(/images/bg__btm-right.svg);
+  background-position: top right, left, bottom right;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3.125em;
+
+  min-height: 100vh;
+  min-width: 100vw;
 }
 
-.main {
-  padding: 3rem 0 3rem 1.75rem;
+.main > * {
+  background-color: white;
+  /* min-width for presentational purpose of this challenge */
+  min-width: 375px;
 }

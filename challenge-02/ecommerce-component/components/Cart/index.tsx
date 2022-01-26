@@ -1,44 +1,38 @@
-import Head from "next/head";
-import styles from "../styles/Cart.module.css";
-import ItemInCart from "../components/ItemInCart";
-import { MobileLayout } from "../components/Layout/MobileLayout";
+import styles from "./style.module.css";
+import ItemInCart from "../ItemInCart";
+import { useContext } from "react";
+import CartContext from "../../context/CartContext";
 
-const Cart = () => {
-  let itemsInCart = [
-    // {
-    //   name: "French Fries with Ketchup",
-    //   price: 123,
-    //   imgUrl: "/images/plate__bacon-eggs.png",
-    // },
-    // {
-    //   name: "Product 2",
-    //   price: 222,
-    //   imgUrl: "/images/plate__chicken-salad.png",
-    // },
-  ];
+const Cart = (props) => {
+  const {CartState, CartDispatch} = useContext(CartContext)
+  console.log("Cart State:", CartState)
+
+  const increaseQty = (product) => {
+    CartDispatch({type: "INCREASE_QTY", payload: product})
+  } 
+
+  const decreaseQty = (product) => {
+    CartDispatch({type: "INCREASE_QTY", payload: product})
+  }
+  
   return (
     <div>
-      <MobileLayout>
-        <Head>
-          <title>Advent of CSS - eCommerce component - Cart</title>
-        </Head>
-
         <main className={styles.main}>
           <h1 className={styles.title}>Your Cart</h1>
           <div className={styles.cartContent}>
-            {itemsInCart.length == 0 ? (
+            {CartState.length == 0 ? (
               <p id="empty-message" className={styles.emptyMessage}>
                 Your cart is empty
               </p>
             ) : (
               <>
                 <ul className={styles.itemList}>
-                  {itemsInCart.map((item, index) => (
+                  {CartState.map((item, index) => (
                     <ItemInCart
                       key={index}
-                      name={item.name}
-                      price={item.price}
-                      imgUrl={item.imgUrl}
+                      item={item}
+                      increaseQty={increaseQty}
+                      decreaseQty={decreaseQty}
                     />
                   ))}
                 </ul>
@@ -64,7 +58,6 @@ const Cart = () => {
             )}
           </div>
         </main>
-      </MobileLayout>
     </div>
   );
 };

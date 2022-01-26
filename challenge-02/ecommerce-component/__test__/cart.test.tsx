@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import Cart from '@/pages/cart'
+import Cart from '../components/Cart'
 
 // - When there are no plates within your cart, you should see a message that says, "Your cart is empty."
 // - When products are in your cart, you should be able to increase and decrease the quantity.

@@ -1,22 +1,31 @@
-import { useState } from "react";
+import { useState, useContext, MouseEventHandler, SetStateAction } from "react";
 import styles from "./style.module.css";
 import CheckIcon from "./check.svg";
 
-const AddToCartButton: React.Component = () => {
-  let [isInCart, setIsInCart] = useState(false);
-  const handleClick = () => {
-    setIsInCart((prevState) => !prevState);
-  };
+type AddToCartButtonProps = {
+  addToCart: MouseEventHandler;
+  removeFromCart: MouseEventHandler;
+  isInCart: boolean,
+  setIsInCart: React.Dispatch<SetStateAction<boolean>>
+};
+
+const AddToCartButton = (props: AddToCartButtonProps) => {
   return (
-    <button onClick={handleClick} className={ isInCart ? `${styles.button} ${styles.inCart} `: styles.button}>
-      {isInCart ? (
-        <>
-          <CheckIcon /> In Cart
-        </>
+    <>
+      {props.isInCart ? (
+        <button
+          className={`${styles.button} ${styles.inCart}`}
+          onClick={props.removeFromCart}
+        >
+          <CheckIcon />
+          <span>In Cart</span>
+        </button>
       ) : (
-        "Add to Cart"
+        <button 
+          onClick={props.addToCart}
+          className={styles.button}>Add to Cart</button>
       )}
-    </button>
+    </>
   );
 };
 
