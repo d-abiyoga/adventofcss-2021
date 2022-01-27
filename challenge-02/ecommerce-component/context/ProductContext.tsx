@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-// import { data as dummyProduct } from "../utils/data.js";
 
 export interface IProduct {
   id: number;
@@ -10,7 +9,6 @@ export interface IProduct {
 
 type ProductState = {
   products: IProduct[]
-  setProducts : any
 };
 
 type ProductContextProviderProps = {

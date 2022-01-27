@@ -2,24 +2,21 @@ import { createContext, useReducer } from "react";
 import { cartReducer } from "./Reducer";
 import { IProduct } from "./ProductContext";
 
-// export type CartStateType = {
-//   product : IProduct,
-//   qty: number
-// }[]
-
 export type CartStateType = {
   cartItems: { product: IProduct; qty: number }[];
-  cartSum? : number 
+  cartTotals: { subTotal: number; tax: number; total: number };
 };
 
 type CartContextProviderProps = {
   children: React.ReactNode;
 };
 
-// const initialState: CartState = {count: 0}
-const initialState: CartStateType = {cartItems: []};
+const initialState: CartStateType = {
+  cartItems: [],
+  cartTotals: { subTotal: 0, tax: 0, total: 0 },
+};
 
-export const CartContext = createContext<null | any>(initialState); //TODO: change type
+export const CartContext = createContext(initialState); 
 
 export const CartContextProvider = ({ children }: CartContextProviderProps) => {
   const [state, dispatch] = useReducer(cartReducer, initialState);

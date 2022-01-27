@@ -14,28 +14,3 @@
 .itemList > li {
   border-bottom: 1px solid #D7D7F9;
 }
-
-.totals {
-  padding-top: 2rem;
-  font-weight: 700;
-  text-align: right;
-  width: 100%;
-}
-
-.totals > div:where(:not(:first-child)) {
-  margin-top: 1rem;
-}
-
-.label {
-  text-align: right;
-}
-
-.value {
-  font-size: 2rem;
-  min-width: fit-content;
-  width: 40%;
-}
-
-.totalValue {
-  color: #6B00F5
-}
