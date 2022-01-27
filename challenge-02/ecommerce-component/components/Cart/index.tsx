@@ -1,38 +1,29 @@
 import styles from "./style.module.css";
-import ItemInCart from "../ItemInCart";
+import CartItem from "../CartItem";
 import { useContext } from "react";
 import CartContext from "../../context/CartContext";
 
-const Cart = (props) => {
-  const {CartState, CartDispatch} = useContext(CartContext)
+const Cart = () => {
+  const {CartState} = useContext(CartContext)
+  const {cartItems} = CartState;
   console.log("Cart State:", CartState)
-
-  const increaseQty = (product) => {
-    CartDispatch({type: "INCREASE_QTY", payload: product})
-  } 
-
-  const decreaseQty = (product) => {
-    CartDispatch({type: "INCREASE_QTY", payload: product})
-  }
   
   return (
     <div>
         <main className={styles.main}>
           <h1 className={styles.title}>Your Cart</h1>
           <div className={styles.cartContent}>
-            {CartState.length == 0 ? (
+            {cartItems.length == 0 ? (
               <p id="empty-message" className={styles.emptyMessage}>
                 Your cart is empty
               </p>
             ) : (
               <>
                 <ul className={styles.itemList}>
-                  {CartState.map((item, index) => (
-                    <ItemInCart
+                  {cartItems.map((item, index) => (
+                    <CartItem
                       key={index}
                       item={item}
-                      increaseQty={increaseQty}
-                      decreaseQty={decreaseQty}
                     />
                   ))}
                 </ul>

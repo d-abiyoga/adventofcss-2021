@@ -1,26 +1,35 @@
 import Image from "next/image";
-import styles from "/styles/ItemInCart.module.css";
+import styles from "./style.module.css";
 import Chevron from "./chevron.svg";
 
-import {useContext} from "react";
+import { useContext } from "react";
 import CartContext from "../../context/CartContext";
 
-type ItemInCartProps = {
+type CartItemProps = {
   item: any;
-  increaseQty: any;
-  decreaseQt: any;
 };
 
-const ItemInCart = (props: ItemInCartProps) => {
+const CartItem = (props: CartItemProps) => {
   const { product, qty } = props.item;
 
-  const {CartDispatch} = useContext(CartContext)
+  const { CartDispatch } = useContext(CartContext);
+  // const handleIncrease = () => {
+  //   console.log(product)
+  //   CartDispatch({ type: "CHANGE_QTY", payload: {product: product, qty: 222}});
+  // };
+  // const handleDecrease = () => {
+  //   console.log(product)
+  //   CartDispatch({ type: "CHANGE_QTY", payload: {product: product, qty: 155}});
+  //   console.log(CartDispatch)
+  // };
   const handleIncrease = () => {
-    CartDispatch({type: "INCREASE_QTY", payload:product})
-  }
+    console.log(product)
+    CartDispatch({ type: "INCREASE_QTY", payload: product });
+  };
   const handleDecrease = () => {
-    CartDispatch({type: "DECREASE_QTY", payload:product})
-  }
+    console.log(product)
+    CartDispatch({ type: "DECREASE_QTY", payload: product });
+  };
 
   return (
     <li className={styles.container}>
@@ -44,7 +53,7 @@ const ItemInCart = (props: ItemInCartProps) => {
         <div className={styles.bottomContainer}>
           <div className={styles.quantityWrapper}>
             <button
-              onClick={handleDecrease}
+              onClick={() => handleDecrease()}
               className={styles.quantityModBtn}
               aria-label="decrease"
             >
@@ -52,7 +61,7 @@ const ItemInCart = (props: ItemInCartProps) => {
             </button>
             <div className={styles.quantityValue}>1</div>
             <button
-              onClick={handleIncrease}
+              onClick={() => handleIncrease()}
               className={`${styles.quantityModBtn} ${styles.increaseBtn}`}
               aria-label="increase"
             >
@@ -66,4 +75,4 @@ const ItemInCart = (props: ItemInCartProps) => {
   );
 };
 
-export default ItemInCart;
+export default CartItem;

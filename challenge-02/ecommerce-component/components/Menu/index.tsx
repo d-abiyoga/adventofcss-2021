@@ -3,8 +3,7 @@ import styles from "./style.module.css";
 import MenuCard from "../MenuCard";
 import { ProductsContext } from "../../context/ProductContext";
 
-
-const Menu = (props) => {
+const Menu = () => {
   const { products } = useContext(ProductsContext)
 
   const alternateBgColor = function (index: number) {

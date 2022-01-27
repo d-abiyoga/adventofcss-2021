@@ -8,12 +8,10 @@ import Cart from "../components/Cart";
 // import data from "../utils/data.js";
 import { useState, useContext } from "react";
 import { ProductsContext } from "../context/ProductContext";
-import { CartContext } from "../context/CartContext"
+import { CartContext } from "../context/CartContext";
 
 const Home: NextPage = () => {
-  const [cart, setCart] = useState([]);
-  const { products } = useContext(ProductsContext);
-  const {CartState, CartDispatch} = useContext(CartContext)
+  const { CartState, CartDispatch } = useContext(CartContext);
 
   return (
     <>
@@ -24,15 +22,11 @@ const Home: NextPage = () => {
       </Head>
       <main className={styles.main}>
         <MobileLayout>
-          <Menu 
-            data={products} 
-            cart={cart}
-            setCart = {setCart}
-          />
+          <Menu />
         </MobileLayout>
 
         <MobileLayout>
-          <Cart cart={cart} />
+          <Cart />
         </MobileLayout>
       </main>
     </>
