@@ -13,22 +13,15 @@ const CartItem = (props: CartItemProps) => {
   const { product, qty } = props.item;
 
   const { CartDispatch } = useContext(CartContext);
-  // const handleIncrease = () => {
-  //   console.log(product)
-  //   CartDispatch({ type: "CHANGE_QTY", payload: {product: product, qty: 222}});
-  // };
-  // const handleDecrease = () => {
-  //   console.log(product)
-  //   CartDispatch({ type: "CHANGE_QTY", payload: {product: product, qty: 155}});
-  //   console.log(CartDispatch)
-  // };
   const handleIncrease = () => {
-    console.log(product)
     CartDispatch({ type: "INCREASE_QTY", payload: product });
   };
   const handleDecrease = () => {
-    console.log(product)
-    CartDispatch({ type: "DECREASE_QTY", payload: product });
+    if (qty === 1) {
+      CartDispatch({ type: "REMOVE_FROM_CART", payload: product });
+    } else {
+      CartDispatch({ type: "DECREASE_QTY", payload: product });
+    }
   };
 
   return (
@@ -59,7 +52,7 @@ const CartItem = (props: CartItemProps) => {
             >
               <Chevron />
             </button>
-            <div className={styles.quantityValue}>1</div>
+            <div className={styles.quantityValue}>{qty}</div>
             <button
               onClick={() => handleIncrease()}
               className={`${styles.quantityModBtn} ${styles.increaseBtn}`}

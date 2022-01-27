@@ -6,7 +6,7 @@ import CartContext from "../../context/CartContext";
 const Cart = () => {
   const {CartState} = useContext(CartContext)
   const {cartItems} = CartState;
-  console.log("Cart State:", CartState)
+  // console.log("Cart State:", CartState)
   
   return (
     <div>

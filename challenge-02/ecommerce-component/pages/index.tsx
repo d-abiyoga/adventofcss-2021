@@ -5,8 +5,7 @@ import { MobileLayout } from "../components/Layout/MobileLayout";
 import Menu from "../components/Menu";
 import Cart from "../components/Cart";
 
-// import data from "../utils/data.js";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { ProductsContext } from "../context/ProductContext";
 import { CartContext } from "../context/CartContext";
 

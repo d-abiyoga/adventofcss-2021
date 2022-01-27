@@ -2,25 +2,29 @@ import Image from "next/image";
 import AddToCartButton from "../../components/AddToCartButton";
 import styles from "./style.module.css";
 import { IProduct } from "../../context/ProductContext";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { CartContext } from "../../context/CartContext";
 
-type MenuCardProps = {
+type MenuItemProps = {
   bgColor: string;
   product: IProduct;
+  isInCartProps: boolean;
 };
 
-const MenuCard = (props: MenuCardProps) => {
-  const { CartDispatch } = useContext(CartContext);
-  let [isInCart, setIsInCart] = useState(false);
-
+const MenuItem = (props: MenuItemProps) => {
+  const { CartState, CartDispatch } = useContext(CartContext);
   const addToCart = () => {
     CartDispatch({ type: "ADD_TO_CART", payload: props.product });
-    setIsInCart(true)
   };
   const removeFromCart = () => {
     CartDispatch({ type: "REMOVE_FROM_CART", payload: props.product });
-    setIsInCart(false)
+  };
+
+  const checkIsInCart = () => {
+    let isInCart = CartState.cartItems.some(
+      (item) => item.product.id === props.product.id
+    );
+    return isInCart
   };
 
   return (
@@ -36,8 +40,7 @@ const MenuCard = (props: MenuCardProps) => {
           <p className={styles.productName}>{props.product.name}</p>
           <p className={styles.productPrice}>${props.product.price}</p>
           <AddToCartButton
-            isInCart={isInCart}
-            setIsInCart={setIsInCart}
+            isInCart={checkIsInCart()}
             addToCart={addToCart}
             removeFromCart={removeFromCart}
           />
@@ -47,4 +50,4 @@ const MenuCard = (props: MenuCardProps) => {
   );
 };
 
-export default MenuCard;
+export default MenuItem;

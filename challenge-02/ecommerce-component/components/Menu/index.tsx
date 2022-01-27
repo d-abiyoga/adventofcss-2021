@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import styles from "./style.module.css";
-import MenuCard from "../MenuCard";
+import MenuItem from "../MenuItem";
 import { ProductsContext } from "../../context/ProductContext";
 
 const Menu = () => {
@@ -17,9 +17,10 @@ const Menu = () => {
       <ul className={styles.productList}>
         {products.map((product, index: number) => (
           <li key={index}>
-            <MenuCard 
+            <MenuItem 
               product={product}
               bgColor={alternateBgColor(index)}
+              isInCartProps={false}
             />
           </li>
         ))}

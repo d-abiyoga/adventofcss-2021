@@ -19,7 +19,6 @@ export const cartReducer: React.Reducer<CartStateType, ActionType> = (
 ) => {
   switch (action.type) {
     case "ADD_TO_CART":
-      console.log("add to cart", action.payload);
       return {
         ...state,
         cartItems: [...state.cartItems, { product: action.payload, qty: 1 }],
@@ -34,49 +33,25 @@ export const cartReducer: React.Reducer<CartStateType, ActionType> = (
       };
 
     case "INCREASE_QTY":
-      // state[state.findIndex((item) => item.product.id === action.payload.id)]
-      //   .qty++;
-      // return [...state];
+      let increasedCartItems = state.cartItems.map((prevItem) =>
+        prevItem.product.id === action.payload.id
+          ? { ...prevItem, qty: prevItem.qty++ }
+          : prevItem
+      );
       return {
         ...state,
-        cartItems: state.cartItems.filter((item) =>
-          item.product.id === action.payload.id ? item.qty++ : item.qty
-        ),
-      };
+        cartItems: increasedCartItems};
 
     case "DECREASE_QTY":
+      let decreasedCartItems = state.cartItems.map((prevItem) =>
+        prevItem.product.id === action.payload.id
+          ? { ...prevItem, qty: prevItem.qty-- }
+          : prevItem
+      );
       return {
         ...state,
-        cartItems: state.cartItems.filter((item) =>
-          item.product.id === action.payload.id ? (item.qty = item.qty - 1) : item.qty
-        ),
+        cartItems: decreasedCartItems,
       };
-    case "CHANGE_QTY":
-      // state[state.findIndex((item) => item.product.id === action.payload.id)]
-      //   .qty--;
-      // return [...state];
-      return {
-        ...state,
-        cartItems: state.cartItems.filter((item) =>
-          item.product.id === action.payload.product.id
-            ? action.payload.qty
-            : item.qty
-        ),
-      };
-    // var targetedProduct = state.find(
-    //   (productInCart) => productInCart.product.id === action.payload.id
-    // );
-    // console.log(targetedProduct);
-    // if (targetedProduct) {
-    //   if (targetedProduct.qty == 0) return state;
-    //   return [
-    //     ...state.filter(
-    //       (productInCart) => productInCart.product.id !== action.payload.id
-    //     ),
-    //     { product: targetedProduct?.product, qty: targetedProduct?.qty - 1 },
-    //   ];
-    // }
-    //
     default:
       return state;
   }

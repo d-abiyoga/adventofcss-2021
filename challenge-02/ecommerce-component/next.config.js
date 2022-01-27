@@ -1,8 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-// Workaround for useReducer being called twice: turn strict mode to false
-// TODO: Research if this is a bad practice
-  reactStrictMode: false,
+  reactStrictMode: true,
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,

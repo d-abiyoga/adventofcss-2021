@@ -1,4 +1,4 @@
-import { useState, useContext, MouseEventHandler, SetStateAction } from "react";
+import { useState, useContext, MouseEventHandler } from "react";
 import styles from "./style.module.css";
 import CheckIcon from "./check.svg";
 
@@ -6,7 +6,6 @@ type AddToCartButtonProps = {
   addToCart: MouseEventHandler;
   removeFromCart: MouseEventHandler;
   isInCart: boolean,
-  setIsInCart: React.Dispatch<SetStateAction<boolean>>
 };
 
 const AddToCartButton = (props: AddToCartButtonProps) => {
