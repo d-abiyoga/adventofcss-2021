@@ -1,0 +1,19 @@
+.button {
+  color: white;
+  font-weight: 700;
+  background-color: #6B00F5;
+  border-radius: 25px;
+  border: none;
+  width: fit-content;
+  min-width: 130px;
+  min-height: 32px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.inCart {
+  background-color: black;
+}

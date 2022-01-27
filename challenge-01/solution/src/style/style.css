@@ -1,0 +1,128 @@
+/* @import url('/public/fonts/bebasneue-book-webfont.woff'); */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@700&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Bebas Neue', cursive;
+}
+
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+.sr-only {
+  position: absolute; 
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px; 
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap; /* added line */
+  border: 0;
+}
+
+.timer-wrapper {
+  background-color:#000000;
+  box-shadow: -5px 14px 44px #000000, 5px -16px 50px rgba(255, 255, 255, 0.15);
+  color: white;
+  width: max-content;
+  aspect-ratio: 1;
+  display: flex;
+}
+
+.timer-progress {
+  --angle: 0deg;
+  width: inherit;
+  display: flex;
+  padding: .5625rem;
+  background: conic-gradient(
+    #900A0A 0deg var(--angle),
+    black var(--angle) 360deg
+  );
+}
+
+.inner-wrapper {
+  background: radial-gradient(71.4% 71.4% at 51.7% 28.6%, #3A393F 0%, #17171A 100%);
+  box-shadow: inset 0px 0px 114px rgba(0, 0, 0, 0.45);
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.time {
+  font-size: 196px;
+  line-height: 196px;
+  padding-inline: 6.25rem;
+  font-weight: 400;
+  background: linear-gradient(#FFFFFF #D5D8E1);
+  display: flex;
+  gap:0;
+}
+
+.buttons-wrapper {
+  position: absolute;
+  bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: center;
+}
+
+button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.start-stop-btn {
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  letter-spacing:.6rem;
+  text-align: center;
+  padding-inline: 1.6rem 1rem;
+}
+
+.setting-btn {
+  width: max-content;
+  height: max-content;
+  padding: 1rem;
+  bottom: 20px;
+  opacity: .5;
+}
+
+/* Setting Duration*/
+#minutes, #seconds {
+  font-family: inherit;
+  color: inherit;
+  font-size: inherit;
+  width: 2.1ch;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+
+.divider {
+  padding: 0;
+  margin-inline-end: 0.625rem;
+}
+
+
+/* UTILITY Classes*/
+.rounded {
+  border-radius: 50%;
+}
